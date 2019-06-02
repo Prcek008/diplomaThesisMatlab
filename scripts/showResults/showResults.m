@@ -133,7 +133,8 @@ end
 if get(handles.cbSubjective,'Value')
     
     h2 = errorbar(subBitrate,listTestResults(1,subScore),listTestResults(2,subScore),'k*','LineWidth',1); % results of subjective tests
-    legend([h1',h2'],{legendEntry{:},'Subjective results'},'Location','best')
+    pressed = get(handles.pushbutton2,'UserData');
+    legend([h1',h2'],{legendEntry{pressed},'Subjective results'},'Location','best')
 end
 
 if strcmp(profile,'xhe')
