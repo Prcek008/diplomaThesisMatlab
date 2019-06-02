@@ -98,12 +98,14 @@ if strcmp(profile,'xhe')
     set(handles.pushbutton2,'UserData',[8 9 10])
 end
 
+legendEntry = {'capriccio.wav' 'cimrman.wav' 'dubstep.wav' 'freq3.wav' 'holmes.wav' 'pennylane.wav' 'refveg.wav' 'xhedemomixed.wav' 'xhedemomusic.wav' 'xhedemospeech.wav' 'Average of chosen s.' 'Standard deviation' 'Subjective results'};
+
 switch get(get(handles.buttonGroupDisplayAllMean,'SelectedObject'),'Tag')
     case 'rbDisplayAll'
         
         h1 = plot(bitrate,odg(get(handles.pushbutton2,'UserData'),:));
-        legendEntry = {'capriccio.wav' 'cimrman.wav' 'dubstep.wav' 'freq3.wav' 'holmes.wav' 'pennylane.wav' 'refveg.wav' 'xhedemomixed.wav' 'xhedemomusic.wav' 'xhedemospeech.wav'};
-        legend(handles.axes1,legendEntry(get(handles.pushbutton2,'UserData')),'Location','best')
+        pressed = get(handles.pushbutton2,'UserData');
+        legend(handles.axes1,legendEntry(pressed),'Location','best')
         
     case 'rbDisplayMean'
 
@@ -114,8 +116,8 @@ switch get(get(handles.buttonGroupDisplayAllMean,'SelectedObject'),'Tag')
         hold on
         h2 = errorbar(x,y,e,'rx');        
         hold off
-        legendEntry = {'Average of chosen s.'};
-        legend(legendEntry,'Location','best');
+        pressed = [11,12];
+        legend(legendEntry(pressed),'Location','best');
 end
 hold on
 
@@ -132,9 +134,9 @@ end
 
 if get(handles.cbSubjective,'Value')
     
-    h2 = errorbar(subBitrate,listTestResults(1,subScore),listTestResults(2,subScore),'k*','LineWidth',1); % results of subjective tests
-    pressed = get(handles.pushbutton2,'UserData');
-    legend([h1',h2'],{legendEntry{pressed},'Subjective results'},'Location','best')
+    h3 = errorbar(subBitrate,listTestResults(1,subScore),listTestResults(2,subScore),'k*','LineWidth',1); % results of subjective tests
+    pressed = [pressed,13];
+    legend({legendEntry{pressed},'Subjective results'},'Location','best')
 end
 
 if strcmp(profile,'xhe')
@@ -146,7 +148,8 @@ hold off
 
 grid(handles.axes1, 'on')
 
-data.legend = legend;
+data.legend = legendEntry;
+data.pressed = pressed;
 data.fileName = [pwd,'\objective\',profile,method,'.pdf'];
 
 set(handles.data,'UserData',data)
@@ -210,7 +213,7 @@ function figure1_ButtonDownFcn(hObject, eventdata, handles)
 function exportPlotButton_Callback(hObject, eventdata, handles)
 
 data = get(handles.data,'UserData')
-leg = data.legend;
+legendEntry = data.legend(data.pressed);
 fileName = data.fileName;
 filter = {'*.pdf';'*.png';'*.jpg';'*.bmp'};
 [file,path] = uiputfile(filter,'Save plot');
@@ -220,7 +223,7 @@ newAxes = copyobj(handles.axes1,fignew); % Copy the appropriate axes
 set(newAxes,'Units','Normalized','Position',get(groot,'DefaultAxesPosition')); % The original position is copied too, so adjust it.
 
 
-legend({'Avg of chosen s.','Standard deviation','Subjective tests results'},'Location','Best','FontSize',12)
+legend(legendEntry,'Location','Best','FontSize',12)
 set(fignew,'CreateFcn','set(gcbf,''Visible'',''on'')'); % Make it visible upon loading
 titleName = get(handles.exportPlotButton,'UserData');
 % title(newAxes,titleName);
