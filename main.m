@@ -42,17 +42,17 @@ mode = 'stereo'; % mono,stereo
 % data.odgVisqol = objectiveTest(pathRoot,pathInput,mode,'visqol',profile);
 
 
-% profile = 'hev2';
-% [pathOutput,profileName,bitrates] = profileSelection(profile);
-% listOfnames = makeAac(pathRoot,pathInput,pathOutput,profile,bitrates);
-% data.name = [data.name,listOfnames];
-% pathCompressed = ['\samples\',profile,'\compressed\'];
-% pathWaveform = ['\samples\',profile,'\wav\'];
-% makeWav(pathRoot,pathCompressed,pathWaveform,profile)
-% data.odgPeaqBasic = objectiveTest(pathRoot,pathInput,mode,'peaq',profile);
+profile = 'hev2';
+[pathOutput,profileName,bitrates] = profileSelection(profile);
+listOfnames = makeAac(pathRoot,pathInput,pathOutput,profile,bitrates);
+data.name = [data.name,listOfnames];
+pathCompressed = ['\samples\',profile,'\compressed\'];
+pathWaveform = ['\samples\',profile,'\wav\'];
+makeWav(pathRoot,pathCompressed,pathWaveform,profile)
+data.odgPeaqBasic = objectiveTest(pathRoot,pathInput,mode,'peaq',profile);
 % data.odgPeaqAdvanced = objectiveTest(pathRoot,pathInput,mode,'peaqAdvanced',profile);
 % data.odgPemoq = objectiveTest(pathRoot,pathInput,mode,'pemoq',profile);
-% data.odgVisqol = objectiveTest(pathRoot,pathInput,mode,'visqol',profile);
+data.odgVisqol = objectiveTest(pathRoot,pathInput,mode,'visqol',profile);
 
 
 % profile = 'mp2';
@@ -68,13 +68,13 @@ mode = 'stereo'; % mono,stereo
 % data.odgVisqol = objectiveTest(pathRoot,pathInput,mode,'visqol',profile);
 
 
-profile = 'opus';
-[pathOutput,profileName,bitrates] = profileSelection(profile);
+% profile = 'opus';
+% [pathOutput,profileName,bitrates] = profileSelection(profile);
 % listOfnames = makeOpus(pathRoot,pathInput,pathOutput,profile,bitrates);
 % data.name = [data.name,listOfnames];
-pathCompressed = ['\samples\',profile,'\compressed\'];
-pathWaveform = ['\samples\',profile,'\wav\'];
-makeWav(pathRoot,pathCompressed,pathWaveform,profile)
+% pathCompressed = ['\samples\',profile,'\compressed\'];
+% pathWaveform = ['\samples\',profile,'\wav\'];
+% makeWav(pathRoot,pathCompressed,pathWaveform,profile)
 % data.odg  = objectiveTest(pathRoot,pathInput,mode,method,profile);
 % data.odgPeaqBasic = objectiveTest(pathRoot,pathInput,mode,'peaq',profile);
 % data.odgPeaqAdvanced = objectiveTest(pathRoot,pathInput,mode,'peaqAdvanced',profile);

@@ -11,7 +11,7 @@ for fileI = 1:noOfFiles
     inputFilename = inputFilename(inputFilename~=' ');
     outputFilename = [inputFilename(1:end-4),'.wav'];
     
-    command = [pwd,'\scripts\makeWav\neroAacDec.exe -if "',pathRoot,pathInput,inputFilename,'" -of "',pathRoot,pathOutput, outputFilename,'"']
+    command = ['"',pwd,'\scripts\makeWav\neroAacDec.exe" -if "',pathRoot,pathInput,inputFilename,'" -of "',pathRoot,pathOutput, outputFilename,'"']
     system(command);
 end
 

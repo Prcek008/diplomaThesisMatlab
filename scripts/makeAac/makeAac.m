@@ -35,7 +35,8 @@ for fileI = 1:noOfFiles
         outputFilename = [inputFilename(1:end-4),'_',num2str(bitrates(bitrateI)),'_',profileName];
         listOfnames{end+1} = outputFilename;
         
-        command = [pwd,'\scripts\makeAac\neroAacEnc.exe -',profile,' -br ',num2str(1024*bitrates(bitrateI)),' -if "',pathRoot,pathInput,inputFilename,'" -of "',pathRoot,'\samples',pathOutput,outputFilename,'.m4a"']
+%         command = [pwd,'\scripts\makeAac\neroAacEnc.exe -',profile,' -br ',num2str(1024*bitrates(bitrateI)),' -if "',pathRoot,pathInput,inputFilename,'" -of "',pathRoot,'\samples',pathOutput,outputFilename,'.m4a"'] % when using nero
+        command = ['"',pwd,'\scripts\makeAac\ffmpeg.exe" -i "',pathRoot,pathInput,inputFilename,'" -c:a libfdk_aac -profile:a aac_he_v2 -b:a ',num2str(bitrates(bitrateI)),'k "',pathRoot,'\samples',pathOutput,outputFilename,'.m4a"'] % when using ffmpeg
         system(command);
         
     end
