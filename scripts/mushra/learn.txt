@@ -1,5 +1,0 @@
-Tlaèítkem Ref se pøehraje referenèní vzorek, tj. ten s nejvyšší kvalitou.
-
-Vzorek A je tzv. Skrytá reference, vaším úkolem bude najít tuto referenci mezi ostaními vzorky a udelit jí maximální hodnocení.
-Vzorek B je tzv. skrytá kotva. Jde o referenèní vzorek na který byla aplikována dolní propust s nominálním kmitoètem 3,5 kHz. Mìli byste být schopni takovýto vzorek odhalit a udìlit mu horší než ucházející hodnocení.
-Vzorky C-E jsou ukázky rùzných kódovacích metod, jimž byste mìli pøiøadit na základì vašeho rozhodnutí podle kategorií uvedených vlevo.

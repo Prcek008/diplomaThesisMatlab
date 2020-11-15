@@ -1,0 +1,308 @@
+%% History:
+% Ondrej Guth (01.05.2015)
+% Josef Hlavac & Tomas Zahradnicky (4.10.2010)
+%  + Built on the FEL CVUT template by Daniel Sykora and Pavel Tvrdik
+%  + Made for FIT CVUT
+%  + Joined several chapters and cleaned
+%  + Undefined references are typeset in an orange box to alert the writer!
+%  + Index is automatically printed if the \usepackage{index} and
+%    \newindex{default}{idx}{ind}{Index} lines are uncommented.
+%
+\documentclass[12pt,oneside,a4paper,final]{memoir}%two-page printing
+
+\usepackage{a4wide}
+
+%\usepackage[T1]{fontenc}
+
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage{lmodern} 
+\usepackage[T1]{fontenc}
+\usepackage[unicode]{hyperref}
+\usepackage{epigraph}
+\usepackage{graphicx}
+\usepackage{pdflscape}
+\usepackage{xfrac}
+\usepackage{subcaption}
+\usepackage{comment}
+\usepackage{tabu}
+%\usepackage{svg}
+%\usepackage{amsmath}
+%\usepackage{setspace}
+%\usepackage{epic} % Images drawn in Xfig, exported as .epic
+
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+\usepackage{pdfpages}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\usepackage{hyperref}
+%\usepackage[hidelinks]{hyperref} %hyperlinks without colour boxes
+% \usepackage[usenames]{color}
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage{amsmath}
+\usepackage{relsize}
+\usepackage{amsthm}
+\usepackage{listings}
+\usepackage{inconsolata}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{language=Matlab,%
+    %basicstyle=\color{red},
+    basicstyle=\tiny\ttfamily,
+    breaklines=true,%
+    morekeywords={matlab2tikz},
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    %emph=[2]{word1,word2}, emphstyle=[2]{style},    
+}
+
+
+
+% \usepackage{tikz}
+\usepackage[chapter]{algorithm}
+% \usepackage{algpseudocode}
+% \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+% \renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+%\usepackage{proof}
+%\usepackage{latexsym}
+% \usepackage{rotating}
+%\usepackage{epsfig}
+% \usepackage{subfigure}
+% \usepackage{multirow}
+%\usepackage{index}
+%\newindex{default}{idx}{ind}{Index}
+
+\usepackage[
+nonumberlist, %do not show page numbers
+acronym,      %generate acronym listing   -> Not used in this example (see line with %%% )
+nomain,
+numberedsection
+% notoc,          %show listings as entries in table of contents
+]      %use section level for toc entries
+{glossaries}
+%\makeglossaries
+\input tex/phdmacro.tex %couple of macros for formatting the dissertation thesis,
+                    %your personal and specific macros can be placed also there
+
+
+\renewcommand{\labelitemi}{\(\circ\)}
+
+\newenvironment{chapterintro}{\slshape}{\par}
+
+\usepackage{etoolbox}
+% fix TOC in memoir class
+\makeatletter
+\renewcommand{\@pnumwidth}{2em} 
+\renewcommand{\@tocrmarg}{3em}
+\patchcmd{\@endtheorem}{\@endpefalse}{}{}{}
+\patchcmd{\endproof}{\@endpefalse}{}{}{}
+\makeatother
+
+\newcommand\DissTitle{Hodnocení kvality zvuku v systémech digitálního rozhlasového vysílání\\\small \medskip Audio Quality Assessment of Digital Radio Broadcasting Systems}
+\newcommand\FirstandFamilyName{Adam Bartyzal}
+\newcommand\Email{bartyada@fel.cvut.cz}
+\newcommand\Month{Praha, Květen}
+\newcommand\Year{2019}
+\newcommand\Supervisor{Ing. Karel Ulovec, Ph.D.}
+\newcommand\SupervisorAffiliation{
+Katedra radioelektroniky\\
+%Department of Digital Design\\
+%Department of Software Engineering\\
+% Department of Computer Systems\\
+Fakulta elektrotechnická\\
+České Učení Vysoké Technické v Praze\\
+Technická 2\\
+160 00 Praha 6\\
+Česká Republika}
+%%-> uncomment if you have a thesis co-supervisor
+%\newcommand\CoSupervisor{prof. RNDr. COSUPERVISOR, Ph.D.}
+%\newcommand\CoSupervisorAffiliation{
+%Computer Science and Engineering Department\\
+%Faculty of Electrical Engineering\\
+%Czech Technical University in Praha\\
+%Karlovo n\'{a}m.~13\\
+%121 35 Praha 2\\
+%Czech Republic}
+
+\newcommand\PhDProgram{Rádiová a optická technika}
+%\newcommand\PhDSpecialization{Informatics}
+\newcommand\Department{Katedra elektromagnetického pole}
+%\newcommand\Department{Department of Digital Design}
+%\newcommand\Department{Department of Software Engineering}
+% \newcommand\Department{Department of Computer Systems}
+\newcommand\Faculty{Fakulta elektrotechnická}
+\newcommand\University{České Učení Vysoké Technické v Praze}
+\newcommand\Address{Technická 2, 160 00 Praha 6, Česká Republika}
+
+\def\UrlBreaks{\do\/\do\-}
+
+
+
+\newacronym{DFA}{DFA}{deterministic finite automaton}
+\newacronym{NFA}{NFA}{nondeterministic finite automaton}
+\newacronym{FA}{FA}{finite automaton}
+
+\maxsecnumdepth{subsubsection}
+\setcounter{tocdepth}{2}
+\makeheadstyles{FITthesis}{
+	\chapterstyle{madsen}
+	\setsecheadstyle{\Large\bfseries\sffamily}
+	\setsubsecheadstyle{\large\bfseries\sffamily}
+	\setsubsubsecheadstyle{\bfseries\sffamily}
+}
+\headstyles{FITthesis}
+
+% \includeonly{
+% 	tex/abstract
+% 	,tex/acknowledgement
+% 	,tex/introduction
+% 	,tex/stateoftheart
+% 	,tex/conclusions
+% }
+
+\begin{document}
+\tikzstyle{every node}=[draw=black,thick,anchor=west]
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{theorem}[lemma]{Theorem}
+\newtheorem{definition}[lemma]{Definition}
+\newtheorem{preposition}[lemma]{Preposition}
+\newtheorem{example}[lemma]{Example}
+\newtheorem{corollary}[lemma]{Corollary}
+\newtheorem{proposition}[lemma]{Proposition}
+\newtheorem{property}[lemma]{Property}
+\newtheorem{observation}[lemma]{Observation}
+\theoremstyle{remark}
+\newtheorem{notation}[lemma]{Notation}
+\newtheorem{note}[lemma]{Note}
+
+\setlength\epigraphwidth{1\textwidth}
+\setlength\epigraphrule{0pt}
+
+% allow @ to appear in macro names
+% \makeatletter
+
+% % produce undefined references in an orange box rather than just ??
+% \def\@setref#1#2#3{%
+%   \ifx#1\relax
+%    \protect\G@refundefinedtrue
+%    \nfss@text{\reset@font\bfseries\fcolorbox{black}{Orange}{??}}%
+%    \@latex@warning{Reference `#3' on page \thepage \space
+%              undefined}%
+%   \else
+%    \expandafter#2#1\null
+%   \fi}
+
+
+\frontmatter
+
+\coverpagestarts
+
+\pagestyle{ruled}
+
+\includepdf[pages={1}]{pdf/zav_prace.pdf}
+
+\include{tex/declaration}
+
+\include{tex/acknowledgement}
+
+\include{tex/abstract_cz}
+
+\include{tex/abstract}
+
+% \newpage
+%\include{tex/acknowledgement}
+
+% \newpage
+%\include{tex/dedication}
+% \newpage
+
+\tableofcontents*
+%------------------------------
+%  LOF, LOT
+%----------------------------------------------------------------------------------------------------------
+% \newpage\addcontentsline{toc}{chapter}{\protect\numberline{}{List of Figures}}
+
+\clearpage
+\listoffigures*
+% \newpage\addcontentsline{toc}{chapter}{\protect\numberline{}{List of Tables}}
+
+\clearpage
+\listoftables*
+% \newpage\addcontentsline{toc}{chapter}{\protect\numberline{}{List of Algorithms}}
+
+%\clearpage
+%\listofalgorithms
+
+% \newpage\addcontentsline{toc}{chapter}{\protect\numberline{}{Definitions, Notations and Abbreviations}}\input{tex/definitions.tex}
+%----------------------------------------------------------------------------------------------------------
+% \newpage
+\setsecnumdepth{part}
+%\include{tex/abbreviations}
+
+
+
+% \mainbodystarts
+\mainmatter
+
+%\singlespacing
+%\onehalfspacing
+%\doublespacing
+%\part{The Parameter Extraction Methodology}
+%-----------------------
+%  Chapters start here
+\include{tex/introduction}
+\include{tex/digitalRadio}
+\include{tex/listeningTests}
+\include{tex/objectiveMethods}
+%%\include{tex/material}
+\include{tex/realization}
+%%\include{tex/objectiveTests}
+\include{tex/results}
+\include{tex/conclusions}
+%------------------------------------------------------------------------------------------
+% Use bibtex to produce bibliography used in the thesis, except for your own publications
+%------------------------------------------------------------------------------------------
+\bibliographystyle{iso690}
+%\bibliographystyle{abbrv}
+% \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\protect\numberline{}{Bibliography}}
+\bibliography{main}
+
+
+% list your own books or papers in refereed journals or conference proceedings
+% or chapters in scientific monographies that are RELEVANT FOR YOUR THESIS
+
+
+\appendix
+
+\appendix
+\include{tex/app1}
+\include{tex/app2}
+\include{tex/app3}
+
+
+
+% % Add the index if it is requested above
+% \ifx\printindex\undefined\relax\else\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\protect\numberline{}{Index}}\fi
+% \ifx\printindex\undefined\relax\else\printindex\fi
+\end{document}
